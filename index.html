@@ -13,9 +13,39 @@
         <h2>Apply now</h2>
       </header>
       <main>
-        <form>
-
-        </form>
+          <form id="mars-once" action="/apply/" method="POST">
+            <label>
+              Name:
+              <input type="text" name="name" id="name" placeholder="Your Name" required autofocus>
+            </label>
+            <label>
+              Email:
+              <input type="email" name="email" id="email" placeholder="elon@musk.com" required>
+            </label>
+            <label>
+              Age:
+              <input type="number" name="age" required>
+            </label>
+            <label>
+              Profession:
+              <select name="specialization" required>
+                <option value="engineer" selected>Engineer</option>
+                <option value="scientist">Scientist</option>
+                <option value="psychologist">Psychologist</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <label>
+              I worked for NASA
+              <input type="checkbox" name="nasa-experience" id="nasa-experience" value="1">
+            </label>
+            <label>
+              Photo:
+              <input type="file" accept="image/jpeg" name="photo" required>
+            </label>
+            <button type="submit">Apply</button>
+            <div id="loader" class="hidden">Sending...</div>
+          </form>
       </main>
 
 
@@ -25,78 +55,32 @@
 
 
       <div class="bg">
-        <svg version='1.1' xmlns='http://www.w3.org/2000/svg'>
-          <filter id='blur'><fegaussianblur stddeviation='10'></fegaussianblur></filter>
-        </svg>
-        <div class='h'>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-          <div class='c'></div>
-        </div>
         <div class="parallax">
-            <div class="parallax__layer" data-speed="0.03">aaaaaaa</div> 
-            <div class="parallax__layer" data-speed="0.05">ssdss</div>
+            <div class="parallax__layer" data-speed="0.03"></div> 
+            <div class="parallax__layer" data-speed="0.05"></div>
             <div class="parallax__layer" data-speed="0.18"></div>
         </div>
       </div>
        
       <script src="js/parallax.js"></script>
+
+      <script>
+      function serializeForm(formNode) {
+        const data = new FormData(formNode)
+        return data
+        console.log(Array.from(data.entries()))
+      }
+      function handleFormSubmit(event) {
+        event.preventDefault()
+        serializeForm(applicantForm)
+        onSuccess(event.target)
+      }
+      function onSuccess(formNode) {
+        alert('Ваша заявка отправлена!')
+        formNode.classList.toggle('hidden')
+      }
+      const applicantForm = document.getElementById('mars-once')
+      applicantForm.addEventListener('submit', handleFormSubmit)
+      </script>
     </body>
 </html>

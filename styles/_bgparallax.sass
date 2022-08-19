@@ -1,0 +1,27 @@
+%background-position
+    height: 100vh
+    width: 100vw
+    top: 0
+    left: 0
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+
+.bg
+    @extend %background-position
+    background-image: url('../assets/img/bg_sprite1.png')
+    position: absolute
+    z-index: -1
+    .parallax
+        width: 100%
+        overflow: hidden
+        .parallax__layer
+            position: absolute
+            @extend %background-position
+            transition: transform 0.3s linear
+            &:nth-child(1)
+                background-image: url('../assets/img/bg_sprite2.png')
+            &:nth-child(2)
+                background-image: url('../assets/img/bg_sprite3.png')
+            &:nth-child(3)
+                background-image: url('../assets/img/bg_sprite4.png')
