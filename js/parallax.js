@@ -1,4 +1,4 @@
-const wrapper = document.querySelector('.parallax');
+const wrapper = document.querySelector('.parallax'); //('.parallax')
 const layers = document.querySelectorAll('.parallax__layer');
 
 const handleParallax = (evt) => {

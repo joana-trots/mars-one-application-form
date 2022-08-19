@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;800&display=swap");
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -20,7 +20,6 @@
 .bg {
   background-image: url("../assets/img/bg_sprite1.png");
   position: absolute;
-  z-index: -1;
 }
 .bg .parallax {
   width: 100%;
@@ -41,19 +40,46 @@
 }
 
 body {
+  height: 100vh;
   overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+header {
+  margin-bottom: 5vh;
+}
+
+header, main {
+  z-index: 1;
 }
 
 h2, h1 {
   z-index: 3;
   text-transform: uppercase;
-  text-shadow: 0px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: 0px 10px rgba(255, 255, 255, 0.15);
   margin: auto;
-  font-family: lato;
   font-weight: 300;
   color: white;
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 0.9rem;
 }
 
+h1 {
+  padding-bottom: 20px;
+}
+
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 10deg;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -64,8 +90,48 @@ form {
   padding: 50px;
   gap: 30px;
   border-radius: 30px;
+  color: white;
+  background: hsl(205deg, 46%, 30%);
+  background: linear-gradient(var(--a), hsla(205deg, 46%, 30%, 0.01) 0%, hsl(260deg, 29%, 36%) 100%);
+  background: -moz-linear-gradient(var(--a), hsla(205deg, 46%, 30%, 0.01) 0%, hsl(260deg, 29%, 36%) 100%);
+  background: -webkit-linear-gradient(var(--a), hsla(205deg, 46%, 30%, 0.01) 0%, hsl(260deg, 82%, 6%) 100%);
+  --a:225deg;
+  animation: gradient 16s infinite;
+}
+form input,
+form select {
+  font-family: "Poppins", sans-serif;
+  font-size: inherit;
+  background: transparent !important;
+  outline: 0;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white !important;
 }
 
+@keyframes gradient {
+  0% {
+    --a: -105deg;
+  }
+  25% {
+    --a: -15deg;
+  }
+  50% {
+    --a: 75deg;
+  }
+  75% {
+    --a: 165deg;
+  }
+  100% {
+    --a: 255deg;
+  }
+}
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  form {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+}
 .hidden {
   display: none;
 }

@@ -9,51 +9,44 @@
     </head>
     <body>
       <header>
-        <h1>Mars One Mission</h1>
+        <h1>Mars Once Mission</h1>
         <h2>Apply now</h2>
       </header>
       <main>
           <form id="mars-once" action="/apply/" method="POST">
-            <label>
-              Name:
+            
+            <div>
+              <label for="name">Name:</label>
               <input type="text" name="name" id="name" placeholder="Your Name" required autofocus>
-            </label>
-            <label>
-              Email:
+            </div>
+            <div>
+              <label for="email">Email:</label>
               <input type="email" name="email" id="email" placeholder="elon@musk.com" required>
-            </label>
-            <label>
-              Age:
-              <input type="number" name="age" required>
-            </label>
-            <label>
-              Profession:
+            </div>
+            <div>
+              <label for="age">Age:</label>
+              <input type="number" name="age" min="18" required>
+            </div>
+            <div>
+              <label for="specialization">Specialization:</label>
               <select name="specialization" required>
                 <option value="engineer" selected>Engineer</option>
                 <option value="scientist">Scientist</option>
                 <option value="psychologist">Psychologist</option>
                 <option value="other">Other</option>
               </select>
-            </label>
-            <label>
-              I worked for NASA
+            </div>
+            <div>
               <input type="checkbox" name="nasa-experience" id="nasa-experience" value="1">
-            </label>
-            <label>
-              Photo:
+              <label>I worked for NASA</label>
+            </div>
+            <div>
+              <label>Photo:</label>
               <input type="file" accept="image/jpeg" name="photo" required>
-            </label>
+            </div>
             <button type="submit">Apply</button>
-            <div id="loader" class="hidden">Sending...</div>
           </form>
       </main>
-
-
-
-
-
-
-
       <div class="bg">
         <div class="parallax">
             <div class="parallax__layer" data-speed="0.03"></div> 
@@ -61,26 +54,7 @@
             <div class="parallax__layer" data-speed="0.18"></div>
         </div>
       </div>
-       
       <script src="js/parallax.js"></script>
-
-      <script>
-      function serializeForm(formNode) {
-        const data = new FormData(formNode)
-        return data
-        console.log(Array.from(data.entries()))
-      }
-      function handleFormSubmit(event) {
-        event.preventDefault()
-        serializeForm(applicantForm)
-        onSuccess(event.target)
-      }
-      function onSuccess(formNode) {
-        alert('Ваша заявка отправлена!')
-        formNode.classList.toggle('hidden')
-      }
-      const applicantForm = document.getElementById('mars-once')
-      applicantForm.addEventListener('submit', handleFormSubmit)
-      </script>
+      <script src="js/handleForm.js"></script>
     </body>
 </html>
