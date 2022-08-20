@@ -14,46 +14,53 @@
       </header>
       <main>
           <form id="mars-once" action="/apply/" method="POST">
-            
             <div>
-              <label for="name">Name:</label>
-              <input type="text" name="name" id="name" placeholder="Your Name" required autofocus>
+              <input type="text" name="name" id="name" required autofocus>
+              <label for="name">Name</label>
             </div>
             <div>
-              <label for="email">Email:</label>
-              <input type="email" name="email" id="email" placeholder="elon@musk.com" required>
+              <input type="email" name="email" id="email" required>
+              <label for="email">Email</label>
             </div>
             <div>
-              <label for="age">Age:</label>
-              <input type="number" name="age" min="18" required>
+              <input type="number" name="age" id="age" min="18" required>
+              <label for="age">Age</label>
             </div>
             <div>
-              <label for="specialization">Specialization:</label>
-              <select name="specialization" required>
-                <option value="engineer" selected>Engineer</option>
+              <select name="specialization" name="specialization" required>
+                <option value="" selected disabled>Select your specialization</option>
+                <option value="engineer">Engineer</option>
                 <option value="scientist">Scientist</option>
                 <option value="psychologist">Psychologist</option>
                 <option value="other">Other</option>
               </select>
+              <label for="specialization">Specialization:</label>
             </div>
             <div>
               <input type="checkbox" name="nasa-experience" id="nasa-experience" value="1">
-              <label>I worked for NASA</label>
+              <label for="nasa-experience">I worked for NASA</label>
             </div>
-            <div>
-              <label>Photo:</label>
-              <input type="file" accept="image/jpeg" name="photo" required>
+            <div class="active">
+              <div class="images">
+                <div class="pic">
+                  add
+                </div>
+              </div>
+              <!-- <label for="photo">Photo:</label>
+              <input type="file" id="photo" accept="image/jpeg" name="photo" required> -->
             </div>
             <button type="submit">Apply</button>
           </form>
       </main>
       <div class="bg">
         <div class="parallax">
+            <div class="parallax__layer"></div>
             <div class="parallax__layer" data-speed="0.03"></div> 
             <div class="parallax__layer" data-speed="0.05"></div>
             <div class="parallax__layer" data-speed="0.18"></div>
         </div>
       </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script src="js/parallax.js"></script>
       <script src="js/handleForm.js"></script>
     </body>

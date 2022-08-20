@@ -9,9 +9,8 @@
 
 .bg
     @extend %background-position
-    background-image: url('../assets/img/bg_sprite1.png')
+    background-color: #111
     position: absolute
-    //z-index: -1
     .parallax
         width: 100%
         overflow: hidden
@@ -20,8 +19,11 @@
             @extend %background-position
             transition: transform 0.3s linear
             &:nth-child(1)
-                background-image: url('../assets/img/bg_sprite2.png')
+                background-image: url('../assets/img/bg_sprite1.png')
+                //opacity: .5
             &:nth-child(2)
-                background-image: url('../assets/img/bg_sprite3.png')
+                background-image: url('../assets/img/bg_sprite2.png')
             &:nth-child(3)
+                background-image: url('../assets/img/bg_sprite3.png')
+            &:nth-child(4)
                 background-image: url('../assets/img/bg_sprite4.png')
