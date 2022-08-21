@@ -1,59 +1,58 @@
-(function ($) {
-  $(document).ready(function () {
-
-
-    function serializeForm(formNode) {
-  const data = new FormData(formNode);
-  console.log(Array.from(data.entries()));
-  return data;
+function serializeForm(formNode) {
+  const data = new FormData(formNode)
+  console.log(Array.from(data.entries()))
+  return data
 }
 function handleFormSubmit(event) {
-  event.preventDefault();
-  serializeForm(applicantForm);
-  onSuccess(event.target);
+  event.preventDefault()
+  serializeForm(applicantForm)
+  onSuccess(event.target)
 }
 function onSuccess(formNode) {
-  alert('Ваша заявка отправлена!');
-  formNode.classList.toggle('hidden');
+  alert('Ваша заявка отправлена!')
+  formNode.classList.toggle('hidden')
 }
-const applicantForm = document.getElementById('mars-once');
-applicantForm.addEventListener('submit', handleFormSubmit);
+const applicantForm = document.getElementById('mars-once')
+applicantForm.addEventListener('submit', handleFormSubmit)
+
+/**
+ * CUSTOM FILE INPUTS FOR IMAGES
+ *
+ * Version: 1.0.0
+ *
+ * Custom file inputs with image preview and 
+ * image file name on selection.
+ */
+$('input[type="file"]').each(function(){
+  // Refs
+  var $file = $(this),
+  $label = $file.next('label'),
+  $labelText = $('.label-text'),
+  labelDefault = $labelText.text();
 
 
-  //img
+  // When a new file is selected
+  $file.on('change', function(event){
 
-    uploadImage();
-    function uploadImage() {
-      var button = $(".images .pic");
-      var uploader = $('<input type="file" accept="image/*" name="photo" required />');
-      var images = $(".images");
+    if(event.target.files.length !== 0){
+      var fileName = $file.val().split( '\\' ).pop(),
+      tmppath = URL.createObjectURL(event.target.files[0]);
+    }
 
-      button.on("click", function () {
-        uploader.click();
-      });
+    
+    //Check successfully selection
+		if( fileName ){
+      $label
+        .addClass('file-ok')
+        .css('background-image', 'url(' + tmppath + ')');
+			$labelText.text(fileName);
+    }else{
+      $label.removeClass('file-ok');
+      $label.css('background-image', 'none');
+			$labelText.text(labelDefault);
 
-      uploader.on("change", function () {
-        var reader = new FileReader();
-        reader.onload = function (event) {
-          images.prepend(
-            '<div class="img" style="background-image: url(\'' +
-              event.target.result +
-              '\');" rel="' +
-              event.target.result +
-              '"><span>remove</span></div>'
-          );
-        };
-        reader.readAsDataURL(uploader[0].files[0]);
-      });
-
-      images.on("click", ".img", function () {
-        $(this).remove();
-      });
     }
   });
-})(jQuery);
-
-
-
-
   
+// End loop of file input elements  
+});
