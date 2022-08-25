@@ -87,11 +87,13 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  max-width: 520px;
   min-width: 400px;
+  width: 100vw;
   margin: auto;
   padding: 50px 100px;
   gap: 30px;
+  font-size: 1rem;
   color: #eceaea;
   background: hsl(205deg, 46%, 30%);
   background: linear-gradient(var(--a), hsla(205deg, 46%, 30%, 0.01) 0%, hsl(260deg, 29%, 36%) 100%);
@@ -108,9 +110,14 @@ form div.wrap-custom-file {
   align-items: center;
   gap: 10px;
   height: 60px;
+  cursor: pointer;
 }
-form input,
-form select {
+form div.wrap-custom-file:hover label[for=photo] + span.label-text {
+  color: #eceaea;
+}
+
+input,
+select {
   font-family: "Poppins", sans-serif;
   font-size: inherit;
   background: rgba(255, 255, 255, 0);
@@ -119,24 +126,39 @@ form select {
   color: #eceaea;
   padding: 10px 0 5px;
 }
-form input:not(#nasa-experience),
-form select:not(#nasa-experience) {
+input:not(#nasa-experience),
+select:not(#nasa-experience) {
   width: 100%;
 }
-form input#age,
-form select#age {
+input:not(#nasa-experience):focus ~ label:not([for=photo]), input:not(#nasa-experience):valid ~ label:not([for=photo]),
+select:not(#nasa-experience):focus ~ label:not([for=photo]),
+select:not(#nasa-experience):valid ~ label:not([for=photo]) {
+  color: #344fff;
+  transform: translateY(-22px);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+input#age,
+select#age {
   width: 100px;
 }
-form input#specialization,
-form select#specialization {
+input#age::-webkit-inner-spin-button, input#age::-webkit-outer-spin-button,
+select#age::-webkit-inner-spin-button,
+select#age::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input#specialization,
+select#specialization {
   width: 230px;
 }
-form input:not(#photo),
-form select:not(#photo) {
+input:not(#photo),
+select:not(#photo) {
   border-bottom: 1px solid #8d8d8d;
 }
-form input#photo,
-form select#photo {
+input#photo, input#nasa-experience,
+select#photo,
+select#nasa-experience {
   position: absolute;
   top: 0;
   left: 0;
@@ -144,24 +166,62 @@ form select#photo {
   height: 0;
   overflow: hidden;
   opacity: 0;
+  cursor: pointer;
 }
-form input:-webkit-autofill, form input:-webkit-autofill:hover, form input:-webkit-autofill:focus, form input:-webkit-autofill:active,
-form select:-webkit-autofill,
-form select:-webkit-autofill:hover,
-form select:-webkit-autofill:focus,
-form select:-webkit-autofill:active {
+input#photo:checked + label, input#nasa-experience:checked + label,
+select#photo:checked + label,
+select#nasa-experience:checked + label {
+  color: #eceaea;
+}
+input#photo:checked + label:after, input#nasa-experience:checked + label:after,
+select#photo:checked + label:after,
+select#nasa-experience:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  width: 6px;
+  height: 11px;
+  border: solid #eceaea;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+input#photo:checked + label:before, input#nasa-experience:checked + label:before,
+select#photo:checked + label:before,
+select#nasa-experience:checked + label:before {
+  border-color: #eceaea;
+}
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #eceaea !important;
 }
-form input:focus,
-form select:focus {
-  border-bottom: 1px solid #344fff;
+input:focus,
+select:focus {
+  border-bottom: 1px solid #344fff !important;
 }
-form input:valid,
-form select:valid {
+input:focus ~ label[for=photo],
+select:focus ~ label[for=photo] {
+  border-color: #344fff;
+}
+input:valid,
+select:valid {
   border-bottom: 1px solid #eceaea;
 }
-form label:not([for=nasa-experience]) {
+input:invalid:not(#specialization),
+select:invalid:not(#specialization) {
+  color: rgba(255, 255, 255, 0);
+}
+input:invalid:not(#specialization):focus,
+select:invalid:not(#specialization):focus {
+  color: #eceaea;
+}
+
+label:not([for=nasa-experience]) {
   position: absolute;
   left: 0;
   letter-spacing: 0.1rem;
@@ -169,11 +229,42 @@ form label:not([for=nasa-experience]) {
   padding: 10px 0 5px;
   overflow: hidden;
   transition: 0.5s;
+  color: #8d8d8d;
 }
-form label[for=specialization] {
+label[for=nasa-experience] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #8d8d8d;
+}
+label[for=nasa-experience]:before {
+  content: "";
+  appearance: none;
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 1px solid #8d8d8d;
+  border-radius: 4px;
+  padding: 10px;
+  display: inline-block;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+}
+label[for=nasa-experience]:hover {
+  color: #eceaea;
+}
+label[for=nasa-experience]:hover:before {
+  border-color: #eceaea;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+label[for=specialization] {
   visibility: hidden;
+  opacity: 0;
 }
-form label[for=photo] {
+label[for=photo] {
   position: relative;
   width: 40px;
   height: 40px;
@@ -185,46 +276,35 @@ form label[for=photo] {
   border-radius: 100%;
   border: 1px solid #8d8d8d;
   padding: 0;
-  transform: rotate(45deg);
   font-size: 12px;
+  color: #8d8d8d;
 }
-form label[for=photo]:hover {
+label[for=photo]:hover {
   color: #344fff;
   border-color: #344fff;
   width: 60px;
   height: 60px;
   font-size: 1rem;
 }
-form label[for=photo].file-ok {
+label[for=photo].file-ok {
   position: relative;
   background-size: cover;
   background-position: center;
   width: 60px;
   height: 60px;
 }
-form label[for=photo].file-ok span {
-  position: absolute;
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #8d8d8d;
-  font-size: 12px;
-}
-form input:not(#nasa-experience):focus ~ label:not(#nasa-experience):not(#photo), form input:not(#nasa-experience):valid ~ label:not(#nasa-experience):not(#photo) {
-  color: #344fff;
-  transform: translateY(-22px);
-  font-size: 12px;
-  text-transform: uppercase;
-}
-form select {
+label[for=photo] + span.label-text {
   color: #8d8d8d;
 }
-form select:valid {
+
+select {
+  color: #8d8d8d;
+}
+select:valid {
   color: #eceaea;
 }
-form button {
+
+button {
   width: 140px;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid #8d8d8d;
@@ -237,8 +317,12 @@ form button {
   border-radius: 40px;
   cursor: pointer;
 }
-form button:hover {
+button:hover {
   color: #344fff;
+  border-color: #344fff;
+}
+button:focus {
+  outline: 0;
   border-color: #344fff;
 }
 
