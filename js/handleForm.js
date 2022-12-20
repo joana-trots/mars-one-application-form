@@ -1,3 +1,6 @@
+const applicantForm = document.getElementById('mars-once')
+applicantForm.addEventListener('submit', handleFormSubmit)
+
 function serializeForm(formNode) {
   const data = new FormData(formNode)
   console.log(Array.from(data.entries()))
@@ -12,8 +15,6 @@ function onSuccess(formNode) {
   alert('Ваша заявка отправлена!')
   formNode.classList.toggle('hidden')
 }
-const applicantForm = document.getElementById('mars-once')
-applicantForm.addEventListener('submit', handleFormSubmit)
 
 /**
  * CUSTOM FILE INPUTS FOR IMAGES
@@ -32,21 +33,20 @@ $('input[type="file"]').each(function(){
 
 
   // When a new file is selected
-  $file.on('change', function(event){
+  $file.on('change', function(event) {
 
-    if(event.target.files.length !== 0){
+    if(event.target.files.length !== 0) {
       var fileName = $file.val().split( '\\' ).pop(),
       tmppath = URL.createObjectURL(event.target.files[0]);
     }
 
-    
     //Check successfully selection
-		if( fileName ){
+		if(fileName) {
       $label
         .addClass('file-ok')
         .css('background-image', 'url(' + tmppath + ')');
 			$labelText.text(fileName);
-    }else{
+    } else {
       $label.removeClass('file-ok');
       $label.css('background-image', 'none');
 			$labelText.text(labelDefault);
