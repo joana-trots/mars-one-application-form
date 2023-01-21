@@ -42,7 +42,7 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
@@ -51,10 +51,11 @@ body {
   justify-content: center;
   align-items: center;
   background-image: url("../assets/img/bg_sprite1.png");
+  background-size: cover;
 }
 
 header {
-  margin-bottom: 5vh;
+  margin: 5vh auto;
 }
 
 header, main {
@@ -64,7 +65,7 @@ header, main {
 h2, h1 {
   z-index: 3;
   text-transform: uppercase;
-  text-shadow: 0px 10px rgba(52, 79, 255, 0.3137254902);
+  text-shadow: 0px 7px hsl(260deg, 100%, 27%);
   margin: auto;
   font-weight: 300;
   color: #eceaea;
@@ -76,6 +77,7 @@ h2, h1 {
 
 h1 {
   padding-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 @property --a {
@@ -93,6 +95,7 @@ form {
   padding: 50px 100px;
   gap: 30px;
   font-size: 1rem;
+  font-weight: 300;
   color: #eceaea;
   background: hsl(205deg, 46%, 30%);
   background: linear-gradient(var(--a), hsla(205deg, 46%, 30%, 0.01) 0%, hsl(260deg, 29%, 36%) 100%);
@@ -122,6 +125,7 @@ select {
   background: rgba(255, 255, 255, 0);
   outline: 0;
   border: none;
+  font-weight: 300;
   color: #eceaea;
   padding: 10px 0 5px;
 }
@@ -149,11 +153,11 @@ select#age::-webkit-outer-spin-button {
 }
 input#specialization,
 select#specialization {
-  width: 230px;
+  width: 246px;
 }
 input:not(#photo),
 select:not(#photo) {
-  border-bottom: 1px solid #8d8d8d;
+  border-bottom: 1px solid #eceaea;
 }
 input#photo, input#nasa-experience,
 select#photo,
@@ -227,15 +231,17 @@ label:not([for=nasa-experience]) {
   color: #eceaea;
   padding: 10px 0 5px;
   overflow: hidden;
-  transition: 0.5s;
-  color: #8d8d8d;
+  transition: all 0.5s;
+  color: #eceaea;
 }
 label[for=nasa-experience] {
   position: relative;
+  margin-top: 5px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #8d8d8d;
+  color: #eceaea;
+  letter-spacing: 0.1rem;
 }
 label[for=nasa-experience]:before {
   content: "";
@@ -244,7 +250,7 @@ label[for=nasa-experience]:before {
   height: 20px;
   width: 20px;
   background-color: transparent;
-  border: 1px solid #8d8d8d;
+  border: 1px solid #eceaea;
   border-radius: 4px;
   padding: 10px;
   display: inline-block;
@@ -265,18 +271,18 @@ label[for=specialization] {
 }
 label[for=photo] {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0);
   border-radius: 100%;
-  border: 1px solid #8d8d8d;
+  border: 1px solid #eceaea;
   padding: 0;
   font-size: 12px;
-  color: #8d8d8d;
+  color: #eceaea;
 }
 label[for=photo]:hover {
   color: #344fff;
@@ -292,37 +298,50 @@ label[for=photo].file-ok {
   width: 60px;
   height: 60px;
 }
+label[for=photo].file-ok + span.label-text {
+  letter-spacing: 0rem;
+  font-size: 12px;
+}
 label[for=photo] + span.label-text {
-  color: #8d8d8d;
+  color: #eceaea;
+  max-width: 200px;
+  letter-spacing: 0.1rem;
 }
 
 select {
-  color: #8d8d8d;
+  color: #eceaea;
+  letter-spacing: 0.1rem;
+  transition: all 0.5s;
 }
 select:valid {
   color: #eceaea;
 }
 
 button {
-  width: 140px;
+  width: auto;
   background: rgba(255, 255, 255, 0.01);
-  border: 1px solid #8d8d8d;
+  border: 1px solid #eceaea;
   font-family: "Poppins", sans-serif;
   color: #eceaea;
   text-transform: uppercase;
   padding: 16px;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.14rem;
   font-size: 1rem;
   border-radius: 40px;
   cursor: pointer;
+  transform: scale(0.95);
+  transition: all 0.5s;
 }
 button:hover {
   color: #344fff;
   border-color: #344fff;
+  transform: scale(1);
+  background-color: #eceaea;
 }
 button:focus {
   outline: 0;
   border-color: #344fff;
+  background-color: #eceaea;
 }
 
 @keyframes gradient {
@@ -354,6 +373,26 @@ button:focus {
 
 .active {
   display: block;
+}
+
+@media (max-width: 500px) {
+  body {
+    justify-content: flex-start;
+  }
+  header {
+    margin: 30px;
+  }
+  h1, h2 {
+    font-size: 18px;
+    letter-spacing: 0.4rem;
+  }
+  form {
+    min-width: 300px;
+    font-size: 14px;
+    padding: 30px;
+    max-width: 380px;
+    width: 80vw;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
